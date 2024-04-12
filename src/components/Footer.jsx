@@ -1,6 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitted email:", email);
+  };
+
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+  };
   return (
     <>
       <footer id="footer">
@@ -63,8 +74,13 @@ function Footer() {
               <div className="col-lg-4 col-md-6 footer-newsletter">
                 <h4>Join Our Newsletter</h4>
                 <p>subscribe for out latest news and trends</p>
-                <form action="" method="post">
-                  <input type="email" name="email" />
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
+                  />
                   <input type="submit" value="Subscribe" />
                 </form>
               </div>
